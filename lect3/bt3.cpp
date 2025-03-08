@@ -54,4 +54,11 @@ LỚP Queue
         KẾT THÚC
 
     HÀM freeMemory()
+Queue()	O(1)
+isEmpty()	O(1)
+isFull()	O(1)
+enqueue(value)	O(1)
+dequeue()	O(1)
+peek()	O(1)
+display()	O(n)
         GIẢI PHÓNG arr
