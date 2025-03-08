@@ -1,61 +1,49 @@
-#include <iostream>
-using namespace std;
+LỚP Stack
+    BIẾN:
+        arr        // Mảng lưu trữ các phần tử
+        top        // Vị trí đỉnh ngăn xếp
+        capacity   // Sức chứa tối đa của ngăn xếp
 
-class Stack {
-private:
-    int *arr;
-    int top;
-    int capacity;
+    HÀM Stack(size)
+        capacity ← size
+        arr ← tạo mảng kích thước capacity
+        top ← -1
 
-public:
-    Stack(int size) {
-        capacity = size;
-        arr = new int[capacity];
-        top = -1;
-    }
+    HÀM isEmpty()
+        TRẢ VỀ top = -1
 
-    bool isEmpty() {
-        return top == -1;
-    }
+    HÀM isFull()
+        TRẢ VỀ top = capacity - 1
 
-    bool isFull() {
-        return top == capacity - 1;
-    }
+    HÀM push(value)
+        NẾU isFull() THÌ
+            HIỂN THỊ "Ngăn xếp đầy"
+            DỪNG
+        KẾT THÚC
+        top ← top + 1
+        arr[top] ← value
 
-    // Thêm phần tử vào đỉnh ngăn xếp - O(1)
-    void push(int value) {
-        if (isFull()) {
-            cout << "Ngăn xếp đầy" << endl;
-            return;
-        }
-        arr[++top] = value;
-    }
+    HÀM pop()
+        NẾU isEmpty() THÌ
+            HIỂN THỊ "Ngăn xếp rỗng"
+            DỪNG
+        KẾT THÚC
+        top ← top - 1
 
-    void pop() {
-        if (isEmpty()) {
-            cout << "Ngăn xếp rỗng" << endl;
-            return;
-        }
-        top--;
-    }
+    HÀM peek()
+        NẾU isEmpty() THÌ
+            HIỂN THỊ "Ngăn xếp rỗng"
+            TRẢ VỀ -1
+        KẾT THÚC
+        TRẢ VỀ arr[top]
 
-    int peek() {
-        if (isEmpty()) {
-            cout << "Ngăn xếp rỗng" << endl;
-            return -1;
-        }
-        return arr[top];
-    }
+    HÀM display()
+        NẾU isEmpty() THÌ
+            HIỂN THỊ "Ngăn xếp rỗng"
+            DỪNG
+        KẾT THÚC
 
-    void display() {
-        if (isEmpty()) {
-            cout << "Ngăn xếp rỗng" << endl;
-            return;
-        }
-        cout << "Ngăn xếp: ";
-        for (int i = top; i >= 0; i--) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-    }
-
+        HIỂN THỊ "Ngăn xếp: "
+        VỚI i TỪ top XUỐNG 0 LÀM
+            HIỂN THỊ arr[i]
+        KẾT THÚC
