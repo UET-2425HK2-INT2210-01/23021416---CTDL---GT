@@ -17,3 +17,4 @@ HÀM hamnhanh2(x, n):
     Nếu n lẻ:
         y = hamnhanh2(x, (n-1)/2)
         trả về y * y * x
+    Độ phức tạp: O(logn)
