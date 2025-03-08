@@ -1,135 +1,58 @@
-#include <iostream>
-using namespace std;
+CLASS Queue
+    VARIABLES:
+        arr       // Mảng lưu trữ các phần tử
+        front     // Vị trí đầu hàng đợi
+        rear      // Vị trí cuối hàng đợi
+        capacity  // Sức chứa tối đa của hàng đợi
+        size      // Số lượng phần tử hiện tại trong hàng đợi
 
-class Queue {
-private:
-    int *arr, front, rear, capacity, size;
+    FUNCTION Queue(capacity):
+        arr ← tạo mảng kích thước capacity
+        front ← 0
+        rear ← -1
+        size ← 0
 
-public:
-    Queue(int cap) {
-        capacity = cap;
-        arr = new int[capacity];
-        front = 0;
-        rear = -1;
-        size = 0;
-    }
+    FUNCTION isEmpty():
+        RETURN size = 0
 
-    bool isEmpty() {
-        return size == 0;
-    }
+    FUNCTION isFull():
+        RETURN size = capacity
 
-    bool isFull() {
-        return size == capacity;
-    }
+    FUNCTION enqueue(value):
+        IF isFull() THEN
+            DISPLAY "Hàng đợi đầy"
+            RETURN
+        ENDIF
+        rear ← (rear + 1) MOD capacity
+        arr[rear] ← value
+        size ← size + 1
 
-    // Thêm phần tử vào cuối hàng đợi - O(1)
-    void enqueue(int value) {
-        if (isFull()) {
-            cout << "Hàng đợi đầy " << endl;
-            return;
-        }
-        rear = (rear + 1) % capacity;
-        arr[rear] = value;
-        size++;
-    }
+    FUNCTION dequeue():
+        IF isEmpty() THEN
+            DISPLAY "Hàng đợi rỗng"
+            RETURN
+        ENDIF
+        front ← (front + 1) MOD capacity
+        size ← size - 1
 
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return;
-        }
-        front = (front + 1) % capacity;
-        size--;
-    }
+    FUNCTION peek():
+        IF isEmpty() THEN
+            DISPLAY "Hàng đợi rỗng"
+            RETURN -1
+        ENDIF
+        RETURN arr[front]
 
-    int peek() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return -1;
-        }
-        return arr[front];
-    }
+    FUNCTION display():
+        IF isEmpty() THEN
+            DISPLAY "Hàng đợi rỗng"
+            RETURN
+        ENDIF
 
-    void display() {#include <iostream>
-using namespace std;
+        DISPLAY "Hàng đợi:"
+        FOR i FROM 0 TO size-1 DO
+            DISPLAY arr[(front + i) MOD capacity]
+        ENDFOR
 
-class Queue {
-private:
-    int *arr, front, rear, capacity, size;
-
-public:
-    Queue(int cap) {
-        capacity = cap;
-        arr = new int[capacity];
-        front = 0;
-        rear = -1;
-        size = 0;
-    }
-
-    bool isEmpty() {
-        return size == 0;
-    }
-
-    bool isFull() {
-        return size == capacity;
-    }
-
-    void enqueue(int value) {
-        if (isFull()) {
-            cout << "Hàng đợi đầy " << endl;
-            return;
-        }
-        rear = (rear + 1) % capacity;
-        arr[rear] = value;
-        size++;
-    }
-
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return;
-        }
-        front = (front + 1) % capacity;
-        size--;
-    }
-
-    int peek() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return -1;
-        }
-        return arr[front];
-    }
-
-    void display() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return;
-        }
-        cout << "Hàng đợi: ";
-        for (int i = 0; i < size; i++) {
-            cout << arr[(front + i) % capacity] << " ";
-        }
-    }
-
-    void freeMemory() {
-        delete[] arr;
-    }
-};
-
-
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng " << endl;
-            return;
-        }
-        cout << "Hàng đợi: ";
-        for (int i = 0; i < size; i++) {
-            cout << arr[(front + i) % capacity] << " ";
-        }
-    }
-
-    void freeMemory() {
-        delete[] arr;
-    }
-};
+    FUNCTION freeMemory():
+        GIẢI PHÓNG arr
 
