@@ -1,72 +1,50 @@
-#include <iostream>
-using namespace std;
+HÀM Queue()
+    front ← NULL             // Con trỏ đầu hàng đợi
+    rear ← NULL              // Con trỏ cuối hàng đợi
+    size ← 0                 // Kích thước ban đầu = 0
 
-struct Node {
-    int data;
-    Node* next;
-    Node(int value) {
-        data = value;
-        next = nullptr;
-    }
-};
+HÀM isEmpty()
+    TRẢ VỀ (size == 0)       // Kiểm tra hàng đợi rỗng
 
-class Queue {
-private:
-    Node* front;
-    Node* rear;
-    int size;
+HÀM enqueue(value)
+    newNode ← tạo Node mới với data = value
+    NẾU isEmpty() THÌ
+        front ← newNode
+        rear ← newNode
+    NGƯỢC LẠI
+        rear.next ← newNode  // Nối Node mới vào cuối
+        rear ← newNode       // Cập nhật lại rear
+    KẾT THÚC
+    size ← size + 1
 
-public:
-    Queue() {
-        front = rear = nullptr;
-        size = 0;
-    }
+HÀM dequeue()
+    NẾU isEmpty() THÌ
+        HIỂN THỊ "Hàng đợi rỗng"
+        DỪNG
+    KẾT THÚC
+    temp ← front
+    front ← front.next
+    XÓA temp
+    size ← size - 1
+    NẾU front == NULL THÌ
+        rear ← NULL
+    KẾT THÚC
 
-    bool isEmpty() {
-        return size == 0;
-    }
+HÀM peek()
+    NẾU isEmpty() THÌ
+        HIỂN THỊ "Hàng đợi rỗng"
+        TRẢ VỀ -1
+    KẾT THÚC
+    TRẢ VỀ front.data
 
-    void enqueue(int value) {
-        Node* newNode = new Node(value);
-        if (isEmpty()) {
-            front = rear = newNode;
-        } else {
-            rear->next = newNode;
-            rear = newNode;
-        }
-        size++;
-    }
-
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng" << endl;
-            return;
-        }
-        Node* temp = front;
-        front = front->next;
-        delete temp;
-        size--;
-        if (front == nullptr) rear = nullptr;
-    }
-
-    int peek() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng" << endl;
-            return -1;
-        }
-        return front->data;
-    }
-
-    void display() {
-        if (isEmpty()) {
-            cout << "Hàng đợi rỗng" << endl;
-            return;
-        }
-        Node* temp = front;
-        cout << "Hàng đợi: ";
-        while (temp) {
-            cout << temp->data << " ";
-            temp = temp->next;
-        }
-        cout << endl;
-    }
+HÀM display()
+    NẾU isEmpty() THÌ
+        HIỂN THỊ "Hàng đợi rỗng"
+        DỪNG
+    KẾT THÚC
+    temp ← front
+    HIỂN THỊ "Hàng đợi: "
+    KHI temp ≠ NULL THÌ
+        HIỂN THỊ temp.data
+        temp ← temp.next
+    KẾT THÚC
