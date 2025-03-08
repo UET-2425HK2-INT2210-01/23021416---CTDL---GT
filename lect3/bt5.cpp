@@ -46,4 +46,11 @@ LỚP Stack
         HIỂN THỊ "Ngăn xếp: "
         VỚI i TỪ top XUỐNG 0 LÀM
             HIỂN THỊ arr[i]
+
+push(value)	O(1)
+pop()	O(1)
+peek()	O(1)
+isEmpty()	O(1)
+isFull()	O(1)
+display()	O(n)
         KẾT THÚC
