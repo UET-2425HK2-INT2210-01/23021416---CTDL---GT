@@ -47,4 +47,9 @@ HÀM display()
     KHI temp ≠ NULL THÌ
         HIỂN THỊ temp.data
         temp ← temp.next
+isEmpty()    O(1)	
+enqueue(value)	O(1)	
+dequeue()	O(1)	
+peek()	O(1)	
+display()	O(n)
     KẾT THÚC
