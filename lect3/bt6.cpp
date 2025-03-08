@@ -1,6 +1,6 @@
 LỚP Stack
     BIẾN:
-        top  // Con trỏ tới đỉnh ngăn xếp
+        top  // Con trỏ 
     
     HÀM Stack()
         top ← NULL
